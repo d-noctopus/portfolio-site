@@ -12,8 +12,11 @@ export type Project = {
   slug: string;
   title: string;
   subtitle: string;
+  metrics?: { label: string; value: string} [];
   tags: ProjectTag[];
+  run?: { headless: string; ui?: string }[];
   stack: string[];
+  caseStudy?: { title: string; ui?: string }[];
   highlights: string[];
   repoUrl?: string;
   demoUrl?: string;
@@ -42,13 +45,44 @@ export const projects: Project[] = [
     slug: "parabank-selenium-qa",
     title: "QA E2E — Selenium + JUnit (ParaBank)",
     subtitle:
-      "Suíte E2E com Page Object Model, evidências de falhas e execução automatizada.",
+      "Suíte E2E  em Selenium/JUnit com BaseTest, retry para instabilidade e evidências automáticas em falha.",
     tags: ["QA", "Automação"],
+    run: {
+      headless: "mvn -Dheadless=true clean test",
+      ui: "mvn clean test",
+    },
+    metrics: [
+      { label: "Casos E2E", value: "10+" },
+      { label: "Execução", value: "Headless (Maven)" },
+      { label: "Evidências", value: "Screenshot em falha" },
+    ],
     stack: ["Java", "JUnit 5", "Selenium 4", "Maven", "CI"],
+    caseStudy: [
+      {
+        title: "Problema",
+        text: "O ParaBank é um ambiente demo com comportamento e mensagens variáveis, o que pode gerar falsos negativos em testes E2E. Além disso, URLs relativas podem causar erros no WebDriver quando chamadas diretamente.",
+      },
+      {
+        title: "Solução",
+        text: "Criei um BaseTest com helper open() para garantir URLs absolutas, login resiliente (evita relogar quando já existe sessão), waits mais estáveis e captura automática de evidências (screenshot) em falha.",
+      },
+      {
+        title: "Arquitetura",
+        text: "Estrutura baseada em BaseTest centralizando setup/teardown, helpers reutilizáveis (navegação, waits, validações) e testes separados por funcionalidade (login, contas, transferências, cadastro e perfil).",
+      },
+      {
+        title: "Resultados",
+        text: "Suíte rodando de forma consistente via Maven (headless). Cenários frágeis do ambiente demo foram tratados com validações flexíveis e, quando necessário, skip controlado para evitar quebra por instabilidade do site.",
+      },
+      {
+        title: "Próximos passos",
+        text: "Evoluir para Page Object Model completo por páginas, adicionar relatório (Allure), paralelizar testes e rodar em pipeline CI com artefatos de evidência.",
+      },
+    ],
     highlights: [
-      "Page Object Model",
-      "10+ casos E2E (smoke/regression)",
-      "Screenshots em falha + pipeline CI",
+      "10+ casos de testes E2E ",
+      "Execução: headless (Maven)",
+      "Evidência: screenshot em falha",
     ],
     repoUrl: "https://github.com/Dev02553/Testes-Automatizados_ParaBank",
     status: "MVP",
