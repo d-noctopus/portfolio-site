@@ -12,12 +12,12 @@ export type Project = {
   slug: string;
   title: string;
   subtitle: string;
-  metrics?: { label: string; value: string} [];
   tags: ProjectTag[];
-  run?: { headless: string; ui?: string }[];
   stack: string[];
-  caseStudy?: { title: string; ui?: string }[];
   highlights: string[];
+  metrics?: { label: string; value: string }[];
+  run?: { headless: string; ui?: string };
+  caseStudy?: { title: string; text: string }[];
   repoUrl?: string;
   demoUrl?: string;
   status: "Em construção" | "MVP" | "Completo";
@@ -47,16 +47,16 @@ export const projects: Project[] = [
     subtitle:
       "Suíte E2E  em Selenium/JUnit com BaseTest, retry para instabilidade e evidências automáticas em falha.",
     tags: ["QA", "Automação"],
-    run: {
-      headless: "mvn -Dheadless=true clean test",
-      ui: "mvn clean test",
-    },
-    metrics: [
+    stack: ["Java", "JUnit 5", "Selenium 4", "Maven", "CI"],
+        metrics: [
       { label: "Casos E2E", value: "10+" },
       { label: "Execução", value: "Headless (Maven)" },
       { label: "Evidências", value: "Screenshot em falha" },
     ],
-    stack: ["Java", "JUnit 5", "Selenium 4", "Maven", "CI"],
+    run: {
+      headless: "mvn -Dheadless=true clean test",
+      ui: "mvn clean test",
+    },
     caseStudy: [
       {
         title: "Problema",
