@@ -1,12 +1,21 @@
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 
-export default function ProjectPage({
+type RouteParams = { slug: string };
+
+// Ajuda o build do Next/Vercel a conhecer os slugs (principalmente se usar export/static)
+export function generateStaticParams(): RouteParams[] {
+  return projects.map((p) => ({ slug: p.slug }));
+}
+
+export default async function ProjectPage({
   params,
 }: {
-  params: { slug: string };
+  params: RouteParams | Promise<RouteParams>;
 }) {
-  const { slug } = params;
+  // ✅ Compatível com Next que entrega params como Promise
+  const { slug } = await Promise.resolve(params);
+
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
@@ -23,7 +32,10 @@ export default function ProjectPage({
   return (
     <div className="space-y-10">
       <header className="space-y-3">
-        <Link href="/projects" className="text-sm text-muted-foreground hover:underline">
+        <Link
+          href="/projects"
+          className="text-sm text-muted-foreground hover:underline"
+        >
           ← Voltar
         </Link>
 
@@ -38,7 +50,10 @@ export default function ProjectPage({
 
         <div className="flex flex-wrap gap-2">
           {project.tags.map((t) => (
-            <span key={t} className="text-xs rounded-full border px-2 py-1 text-muted-foreground">
+            <span
+              key={t}
+              className="text-xs rounded-full border px-2 py-1 text-muted-foreground"
+            >
               {t}
             </span>
           ))}
@@ -63,6 +78,7 @@ export default function ProjectPage({
               Repositório
             </a>
           ) : null}
+
           {project.demoUrl ? (
             <a
               className="rounded-md border px-4 py-2 hover:bg-muted transition"
@@ -86,7 +102,9 @@ export default function ProjectPage({
                 <div className="text-xs text-muted-foreground">{m.label}</div>
                 <div className="text-lg font-semibold">{m.value}</div>
                 {m.hint ? (
-                  <div className="text-xs text-muted-foreground mt-1">{m.hint}</div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    {m.hint}
+                  </div>
                 ) : null}
               </div>
             ))}
@@ -118,8 +136,8 @@ export default function ProjectPage({
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Dica: rode dentro da pasta que contém o <code>pom.xml</code> (Java/Maven) ou o
-            <code> package.json</code> (Node).
+            Dica: rode dentro da pasta que contém o <code>pom.xml</code>{" "}
+            (Java/Maven) ou o <code>package.json</code> (Node).
           </p>
         </section>
       ) : null}
@@ -144,13 +162,17 @@ export default function ProjectPage({
               <div key={sec.id} className="rounded-lg border p-5 space-y-3">
                 <div className="space-y-1">
                   <div className="text-base font-semibold">{sec.title.pt}</div>
-                  <div className="text-sm text-muted-foreground">{sec.title.en}</div>
+                  <div className="text-sm text-muted-foreground">
+                    {sec.title.en}
+                  </div>
                 </div>
 
                 {sec.body ? (
                   <div className="space-y-2">
                     <p className="text-muted-foreground">{sec.body.pt}</p>
-                    <p className="text-muted-foreground italic opacity-90">{sec.body.en}</p>
+                    <p className="text-muted-foreground italic opacity-90">
+                      {sec.body.en}
+                    </p>
                   </div>
                 ) : null}
 
@@ -164,6 +186,7 @@ export default function ProjectPage({
                         ))}
                       </ul>
                     </div>
+
                     <div>
                       <div className="text-sm font-medium mb-2">EN</div>
                       <ul className="list-disc pl-5 text-muted-foreground space-y-1">
