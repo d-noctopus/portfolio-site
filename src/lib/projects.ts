@@ -38,13 +38,16 @@ export type Project = {
   status: "Em construção" | "MVP" | "Completo";
   year: string;
 
-  // ✅ Novos (para página detalhada)
+  // Página detalhada
   metrics?: ProjectMetric[];
   run?: ProjectRun;
   caseStudy?: CaseStudySection[];
 };
 
 export const projects: Project[] = [
+  // =========================
+  // 1) Python ETL
+  // =========================
   {
     slug: "python-etl-automation",
     title: "ETL & Data Quality em Python",
@@ -60,8 +63,98 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/Dev02553/python-etl-automation",
     status: "Em construção",
     year: "2026",
+
+    metrics: [
+      { label: "Foco", value: "Qualidade de dados", hint: "regras + evidências" },
+      { label: "Saída", value: "Excel (XLSX)", hint: "aba de Data Quality" },
+      { label: "Testes", value: "Pytest", hint: "validações automatizadas" },
+      { label: "Uso", value: "CLI", hint: "execução simples por comando" },
+    ],
+
+    run: {
+      headless: "python -m pytest -q",
+      ui: "python main.py --input ./data --output ./output/report.xlsx",
+    },
+
+    caseStudy: [
+      {
+        id: "context",
+        title: { pt: "Contexto", en: "Context" },
+        body: {
+          pt: "Em rotinas operacionais/ETL, erros pequenos (tipos, datas, duplicados) viram problemas grandes em relatórios e decisões. O objetivo aqui é reduzir falhas com validações explícitas e rastreabilidade.",
+          en: "In operational ETL routines, small issues (types, dates, duplicates) become big problems in reports and decisions. This project focuses on preventing failures with explicit validations and traceability.",
+        },
+      },
+      {
+        id: "goal",
+        title: { pt: "Objetivo", en: "Goal" },
+        bullets: {
+          pt: [
+            "Extrair e padronizar dados de entrada.",
+            "Aplicar regras de Data Quality e gerar evidência.",
+            "Entregar um relatório final reutilizável e fácil de auditar.",
+          ],
+          en: [
+            "Extract and standardize input data.",
+            "Apply Data Quality rules and generate evidence.",
+            "Deliver a reusable final report that is easy to audit.",
+          ],
+        },
+      },
+      {
+        id: "approach",
+        title: { pt: "Abordagem", en: "Approach" },
+        bullets: {
+          pt: [
+            "Pipeline por etapas com logs e checkpoints.",
+            "Validações separadas por regra (obrigatórios, tipos, duplicados, datas).",
+            "Saída em Excel com resumo e detalhes por regra.",
+          ],
+          en: [
+            "Step-based pipeline with logs and checkpoints.",
+            "Validations split by rule (required, types, duplicates, dates).",
+            "Excel output with a summary and rule-by-rule details.",
+          ],
+        },
+      },
+      {
+        id: "results",
+        title: { pt: "Resultados", en: "Results" },
+        bullets: {
+          pt: [
+            "Menos retrabalho: erros são detectados antes do consumo em relatórios.",
+            "Rastreabilidade: é possível explicar o “porquê” de cada inconsistência.",
+            "Base pronta para evoluir (CI, novas fontes, novas métricas).",
+          ],
+          en: [
+            "Less rework: issues are detected before reporting/consumption.",
+            "Traceability: you can explain the reason behind each inconsistency.",
+            "Ready-to-evolve base (CI, new sources, new metrics).",
+          ],
+        },
+      },
+      {
+        id: "next",
+        title: { pt: "Próximos passos", en: "Next steps" },
+        bullets: {
+          pt: [
+            "Adicionar validações por domínio (regras de negócio).",
+            "Gerar relatório HTML além do XLSX.",
+            "Rodar automaticamente via GitHub Actions.",
+          ],
+          en: [
+            "Add domain/business validations.",
+            "Generate HTML report in addition to XLSX.",
+            "Run automatically via GitHub Actions.",
+          ],
+        },
+      },
+    ],
   },
 
+  // =========================
+  // 2) ParaBank QA
+  // =========================
   {
     slug: "parabank-selenium-qa",
     title: "QA E2E — Selenium + JUnit (ParaBank)",
@@ -95,8 +188,8 @@ export const projects: Project[] = [
         id: "context",
         title: { pt: "Contexto", en: "Context" },
         body: {
-          pt: "O ParaBank (Parasoft) é um sistema demo usado para praticar automação de testes E2E. Por ser um ambiente público, ele pode apresentar instabilidade e variações na UI/mensagens.",
-          en: "ParaBank (by Parasoft) is a demo banking app used to practice E2E test automation. As a public environment, it can be unstable and its UI/messages may vary.",
+          pt: "O ParaBank (Parasoft) é um sistema demo usado para praticar automação E2E. Por ser público, pode variar a UI/mensagens e ficar instável.",
+          en: "ParaBank (Parasoft) is a demo banking app used to practice E2E automation. As a public environment, UI/messages may vary and it can be unstable.",
         },
       },
       {
@@ -104,14 +197,14 @@ export const projects: Project[] = [
         title: { pt: "Objetivo", en: "Goal" },
         bullets: {
           pt: [
-            "Criar uma suíte automatizada com cobertura de fluxos críticos (login, contas, transferências, perfil).",
-            "Aplicar boas práticas (setup/teardown, waits, reuso, evidências).",
-            "Rodar em modo headless para CI e também em modo visual (UI).",
+            "Cobrir fluxos críticos (login, contas, transferências, perfil).",
+            "Aplicar boas práticas (setup/teardown, waits, evidências).",
+            "Executar em headless (CI) e visual (UI).",
           ],
           en: [
-            "Build an automated suite covering critical flows (login, accounts, transfers, profile).",
-            "Apply good practices (setup/teardown, waits, reuse, evidence).",
-            "Run headless for CI and also in visual UI mode.",
+            "Cover critical flows (login, accounts, transfers, profile).",
+            "Apply best practices (setup/teardown, waits, evidence).",
+            "Run headless (CI) and visual (UI).",
           ],
         },
       },
@@ -120,30 +213,14 @@ export const projects: Project[] = [
         title: { pt: "Abordagem", en: "Approach" },
         bullets: {
           pt: [
-            "Criação de um BaseTest centralizando WebDriver, WebDriverWait e helpers de navegação.",
-            "Seletores mais estáveis e waits explícitos para reduzir flakiness.",
-            "Captura de screenshot automaticamente quando um teste falha.",
+            "BaseTest centraliza WebDriver, waits e helpers.",
+            "Seletores mais estáveis + waits explícitos para reduzir flakiness.",
+            "Screenshot automático em falha.",
           ],
           en: [
-            "Created a BaseTest to centralize WebDriver, WebDriverWait and navigation helpers.",
-            "Used more stable selectors and explicit waits to reduce flakiness.",
-            "Automatically captured screenshots on test failure.",
-          ],
-        },
-      },
-      {
-        id: "challenges",
-        title: { pt: "Desafios e soluções", en: "Challenges & solutions" },
-        bullets: {
-          pt: [
-            "Instabilidade do demo: uso de waits e validações alternativas (texto/elementos).",
-            "Botões duplicados em register/login: clique ancorado no FORM correto (evita clicar no login vazio).",
-            "Mensagens variáveis: asserts tolerantes aos textos reais exibidos no painel.",
-          ],
-          en: [
-            "Demo instability: added waits and alternative validations (text/elements).",
-            "Duplicate buttons in register/login: click anchored to the correct FORM (avoids empty login click).",
-            "Variable messages: assertions tolerant to real messages shown in the panel.",
+            "BaseTest centralizes WebDriver, waits and helpers.",
+            "More stable selectors + explicit waits to reduce flakiness.",
+            "Automatic screenshot on failure.",
           ],
         },
       },
@@ -152,14 +229,14 @@ export const projects: Project[] = [
         title: { pt: "Resultados", en: "Results" },
         bullets: {
           pt: [
-            "Suíte executável via Maven com log claro e evidências em falha.",
-            "Cobertura de cenários principais com melhor estabilidade no ambiente demo.",
-            "Estrutura pronta para expansão (novos testes + Page Objects no futuro).",
+            "Suíte executável via Maven com logs claros.",
+            "Cobertura dos cenários principais com maior estabilidade.",
+            "Estrutura pronta para evoluir com Page Objects.",
           ],
           en: [
-            "Maven-runnable suite with clear logs and failure evidence.",
-            "Coverage of main scenarios with better stability on the demo environment.",
-            "Structure ready to expand (new tests + Page Objects in the future).",
+            "Maven-runnable suite with clear logs.",
+            "Main scenario coverage with improved stability.",
+            "Structure ready to evolve with Page Objects.",
           ],
         },
       },
@@ -168,20 +245,23 @@ export const projects: Project[] = [
         title: { pt: "Próximos passos", en: "Next steps" },
         bullets: {
           pt: [
-            "Adicionar Page Object Model para melhorar ainda mais manutenibilidade.",
-            "Relatório HTML (Surefire) e anexar screenshots no pipeline.",
-            "Executar em CI (GitHub Actions) com artefatos.",
+            "Adicionar Page Object Model (POM).",
+            "Relatórios HTML + anexar screenshots no CI.",
+            "Pipeline no GitHub Actions com artefatos.",
           ],
           en: [
-            "Add Page Object Model to improve maintainability further.",
-            "Generate HTML reports (Surefire) and attach screenshots in pipeline.",
-            "Run on CI (GitHub Actions) with artifacts.",
+            "Add Page Object Model (POM).",
+            "HTML reports + attach screenshots in CI.",
+            "GitHub Actions pipeline with artifacts.",
           ],
         },
       },
     ],
   },
 
+  // =========================
+  // 3) Java API CRUD
+  // =========================
   {
     slug: "java-api-crud",
     title: "API Java com DB — CRUD + Testes",
@@ -192,13 +272,87 @@ export const projects: Project[] = [
     highlights: [
       "CRUD completo + validação",
       "Tratamento de erros padronizado",
-      "Docker compose + testes de integração",
+      "Migrations (Flyway) + testes de integração",
     ],
     repoUrl: "https://github.com/Dev02553/java-api-crud",
     status: "Em construção",
     year: "2026",
+
+    metrics: [
+      { label: "API", value: "REST", hint: "padrão de endpoints" },
+      { label: "Banco", value: "JPA + Migrations", hint: "Flyway" },
+      { label: "Testes", value: "Integração", hint: "Testcontainers" },
+      { label: "Docs", value: "OpenAPI", hint: "Swagger UI" },
+    ],
+
+    run: {
+      headless: "mvn -q test",
+      ui: "mvn spring-boot:run",
+    },
+
+    caseStudy: [
+      {
+        id: "context",
+        title: { pt: "Contexto", en: "Context" },
+        body: {
+          pt: "APIs de CRUD são comuns em produtos, mas precisam consistência: validação, erros padronizados e banco versionado por migrations.",
+          en: "CRUD APIs are common in products, but they require consistency: validation, standardized errors, and versioned database via migrations.",
+        },
+      },
+      {
+        id: "goal",
+        title: { pt: "Objetivo", en: "Goal" },
+        bullets: {
+          pt: [
+            "Construir uma API CRUD com boas práticas de backend.",
+            "Garantir consistência do banco com migrations.",
+            "Cobrir com testes de integração reproduzíveis.",
+          ],
+          en: [
+            "Build a CRUD API with backend best practices.",
+            "Ensure database consistency with migrations.",
+            "Cover with reproducible integration tests.",
+          ],
+        },
+      },
+      {
+        id: "approach",
+        title: { pt: "Abordagem", en: "Approach" },
+        bullets: {
+          pt: [
+            "Camadas bem separadas (controller/service/repository).",
+            "Validação de entrada + respostas de erro padronizadas.",
+            "Testcontainers para testes mais próximos do real.",
+          ],
+          en: [
+            "Well-separated layers (controller/service/repository).",
+            "Input validation + standardized error responses.",
+            "Testcontainers for more realistic integration tests.",
+          ],
+        },
+      },
+      {
+        id: "next",
+        title: { pt: "Próximos passos", en: "Next steps" },
+        bullets: {
+          pt: [
+            "Adicionar autenticação/autorização.",
+            "Observabilidade (logs estruturados + métricas).",
+            "CI rodando testes e publicando artefatos.",
+          ],
+          en: [
+            "Add authentication/authorization.",
+            "Observability (structured logs + metrics).",
+            "CI running tests and publishing artifacts.",
+          ],
+        },
+      },
+    ],
   },
 
+  // =========================
+  // 4) React Dashboard
+  // =========================
   {
     slug: "react-dashboard",
     title: "Dashboard (Next/React) consumindo API",
@@ -209,13 +363,71 @@ export const projects: Project[] = [
     highlights: [
       "DataTable + filtros e busca",
       "Forms com validação",
-      "Deploy no Vercel",
+      "Estrutura pronta para deploy no Vercel",
     ],
     repoUrl: "https://github.com/Dev02553/react-dashboard",
     status: "Em construção",
     year: "2026",
+
+    metrics: [
+      { label: "UI", value: "Tabela + filtros", hint: "busca e ordenação" },
+      { label: "Forms", value: "Validação", hint: "inputs consistentes" },
+      { label: "Integração", value: "API", hint: "fetch/handlers" },
+      { label: "Deploy", value: "Vercel-ready", hint: "build estável" },
+    ],
+
+    run: {
+      headless: "npm run build",
+      ui: "npm run dev",
+    },
+
+    caseStudy: [
+      {
+        id: "context",
+        title: { pt: "Contexto", en: "Context" },
+        body: {
+          pt: "Dashboards precisam ser rápidos e claros: listar dados, filtrar, editar e manter consistência visual.",
+          en: "Dashboards must be fast and clear: list data, filter, edit, and keep visual consistency.",
+        },
+      },
+      {
+        id: "goal",
+        title: { pt: "Objetivo", en: "Goal" },
+        bullets: {
+          pt: [
+            "Criar UI focada em produto: tabela + filtros + formulários.",
+            "Organizar componentes para escala/manutenção.",
+            "Preparar para deploy e iteração contínua.",
+          ],
+          en: [
+            "Create a product-focused UI: table + filters + forms.",
+            "Organize components for scale/maintenance.",
+            "Prepare for deployment and continuous iteration.",
+          ],
+        },
+      },
+      {
+        id: "next",
+        title: { pt: "Próximos passos", en: "Next steps" },
+        bullets: {
+          pt: [
+            "Adicionar paginação e estados de loading/empty/error melhores.",
+            "Testes de UI (Playwright) para fluxos críticos.",
+            "Integração com backend real e autenticação.",
+          ],
+          en: [
+            "Add pagination and better loading/empty/error states.",
+            "UI tests (Playwright) for critical flows.",
+            "Integrate with a real backend and authentication.",
+          ],
+        },
+      },
+    ],
   },
 
+  // =========================
+  // 5) RPG HUB
+  // =========================
   {
     slug: "rpg-hub",
     title: "RPG HUB",
@@ -226,10 +438,65 @@ export const projects: Project[] = [
     highlights: [
       "CRUD de campanhas e entidades",
       "Upload/gestão de mapas e assets",
-      "Export/relatórios (futuro)",
+      "Base para features de produto (permissões, colaboração)",
     ],
     repoUrl: "https://github.com/Dev02553/rpg-hub",
     status: "Em construção",
     year: "2026",
+
+    metrics: [
+      { label: "Domínio", value: "RPG/Produto", hint: "organização e UX" },
+      { label: "Core", value: "CRUD", hint: "campanhas e entidades" },
+      { label: "Assets", value: "Upload/mapas", hint: "organização de mídia" },
+      { label: "Futuro", value: "Auth/roles", hint: "permissões" },
+    ],
+
+    run: {
+      headless: "npm run build",
+      ui: "npm run dev",
+    },
+
+    caseStudy: [
+      {
+        id: "context",
+        title: { pt: "Contexto", en: "Context" },
+        body: {
+          pt: "Mestres e grupos acumulam informações: NPCs, sessões, mapas e itens. Sem organização, o jogo perde ritmo.",
+          en: "GMs and groups accumulate information: NPCs, sessions, maps and items. Without organization, the game loses pacing.",
+        },
+      },
+      {
+        id: "goal",
+        title: { pt: "Objetivo", en: "Goal" },
+        bullets: {
+          pt: [
+            "Centralizar informações da campanha com boa UX.",
+            "Facilitar consulta rápida durante sessões.",
+            "Criar base para features futuras (auth, colaboração, export).",
+          ],
+          en: [
+            "Centralize campaign info with good UX.",
+            "Enable quick lookup during sessions.",
+            "Create a base for future features (auth, collaboration, export).",
+          ],
+        },
+      },
+      {
+        id: "next",
+        title: { pt: "Próximos passos", en: "Next steps" },
+        bullets: {
+          pt: [
+            "Definir modelo de dados (DB) e endpoints.",
+            "Adicionar upload com organização por campanha.",
+            "Permissões por papel (mestre/jogador).",
+          ],
+          en: [
+            "Define the data model (DB) and endpoints.",
+            "Add uploads organized per campaign.",
+            "Role-based permissions (GM/player).",
+          ],
+        },
+      },
+    ],
   },
 ];
