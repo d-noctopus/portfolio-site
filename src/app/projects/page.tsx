@@ -18,6 +18,11 @@ function uniqueTags(): ProjectTag[] {
   return Array.from(set).sort((a, b) => a.localeCompare(b));
 }
 
+const inputCls =
+  "w-full rounded-md border bg-background text-foreground px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-muted";
+const selectCls =
+  "w-full rounded-md border bg-background text-foreground px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-muted";
+
 export default function ProjectsPage() {
   const [query, setQuery] = useState("");
   const [tag, setTag] = useState<ProjectTag | "Todos">("Todos");
@@ -82,7 +87,7 @@ export default function ProjectsPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Ex: Selenium, ETL, Java, Tailwind..."
-              className="w-full rounded-md border bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-muted"
+              className={inputCls}
             />
           </div>
 
@@ -91,7 +96,7 @@ export default function ProjectsPage() {
             <select
               value={tag}
               onChange={(e) => setTag(e.target.value as ProjectTag | "Todos")}
-              className="w-full rounded-md border bg-transparent px-3 py-2 text-sm outline-none"
+              className={selectCls}
             >
               <option value="Todos">Todos</option>
               {tags.map((t) => (
@@ -107,7 +112,7 @@ export default function ProjectsPage() {
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as Status | "Todos")}
-              className="w-full rounded-md border bg-transparent px-3 py-2 text-sm outline-none"
+              className={selectCls}
             >
               {statuses.map((s) => (
                 <option key={s} value={s}>
@@ -129,7 +134,7 @@ export default function ProjectsPage() {
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as typeof sort)}
-              className="rounded-md border bg-transparent px-3 py-2 text-sm outline-none"
+              className={selectCls.replace("w-full", "")}
             >
               <option value="Mais recentes">Mais recentes</option>
               <option value="Status">Status (Completo → MVP → Em construção)</option>
