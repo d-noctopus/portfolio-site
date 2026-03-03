@@ -15,9 +15,7 @@ export default function HomePage() {
     <div className="space-y-10">
       {/* HERO */}
       <section className="space-y-3">
-        <h1 className="text-3xl sm:text-4xl font-bold">
-          David Rodrigues — Portfólio
-        </h1>
+        <h1 className="text-3xl sm:text-4xl font-bold">David Rodrigues — Portfólio</h1>
         <p className="text-muted-foreground max-w-2xl">
           QA / Automação / Dados. Projetos com foco em qualidade, testes E2E,
           pipelines e organização de entregas.
@@ -29,6 +27,12 @@ export default function HomePage() {
             className="rounded-md border px-4 py-2 hover:bg-muted transition"
           >
             Ver projetos
+          </Link>
+          <Link
+            href="/about"
+            className="rounded-md border px-4 py-2 hover:bg-muted transition"
+          >
+            Sobre
           </Link>
           <Link
             href="/contact"
@@ -44,10 +48,7 @@ export default function HomePage() {
         <section className="space-y-3">
           <div className="flex items-center justify-between gap-3">
             <h2 className="text-lg font-semibold">Destaques</h2>
-            <Link
-              href="/projects"
-              className="text-sm text-muted-foreground hover:underline"
-            >
+            <Link href="/projects" className="text-sm text-muted-foreground hover:underline">
               Ver todos →
             </Link>
           </div>
