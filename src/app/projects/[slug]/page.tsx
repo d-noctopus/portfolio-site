@@ -1,3 +1,5 @@
+/* cSpell:disable */
+
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 
@@ -205,3 +207,5 @@ export default async function ProjectPage({
     </div>
   );
 }
+
+/* cSpell:disable */
