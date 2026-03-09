@@ -1,9 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import Link from "next/link";
-
-type Tone = "corporativo" | "criativo";
+import PageHero from "@/components/page-hero";
 
 const skills = [
   { label: "Linguagens", value: "Python, Java, SQL" },
@@ -42,12 +40,12 @@ const experience = [
 const projectHighlights = [
   {
     title: "QA E2E — Selenium + JUnit (ParaBank)",
-    desc: "Casos E2E, Page Objects, evidências e organização por suíte (smoke/regression).",
+    desc: "Casos E2E, evidências automáticas e organização por suíte.",
     href: "/projects/parabank-selenium-qa",
   },
   {
     title: "ETL & Data Quality em Python",
-    desc: "Pipeline com validações e geração de Excel com aba “Data Quality”.",
+    desc: "Pipeline com validações e Excel final com aba “Data Quality”.",
     href: "/projects/python-etl-automation",
   },
   {
@@ -57,81 +55,86 @@ const projectHighlights = [
   },
 ];
 
-const qaMindsetGames = [
-  "Consistência de UI/UX (fluxos, feedback e clareza)",
-  "Câmera, colisão e sensação de controle",
-  "Sistemas de salvamento/carregamento e recuperação",
-  "Desempenho e casos extremos (edge cases)",
-];
+const CONTACT = {
+  email: "David_2553@hotmail.com",
+  github: "https://github.com/Dev02553",
+  linkedin: "https://www.linkedin.com/in/david-silva-rodrigues-500190284/",
+};
+
+function CopyEmailButton() {
+  return (
+    <button
+      type="button"
+      onClick={() => navigator.clipboard.writeText(CONTACT.email)}
+      className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
+    >
+      Copiar e-mail
+    </button>
+  );
+}
 
 export default function AboutPage() {
-  const [tone, setTone] = useState<Tone>("corporativo");
-
-  const intro = useMemo(() => {
-    if (tone === "corporativo") {
-      return {
-        title: "Sobre",
-        p1:
-          "Sou estudante de Análise e Desenvolvimento de Sistemas (ADS), com foco em Qualidade de Software (QA), automação e organização de processos. Busco oportunidade de estágio/trainee para aplicar na prática projetos do zero, documentação clara e mentalidade de melhoria contínua.",
-        p2:
-          "Minha base profissional vem de ambientes com ritmo e responsabilidade. Atuei como único colaborador de um petshop (atendimento, expedição e organização) e, mais recentemente, como Assistente de E-commerce, operando marketplaces e ERPs (Shein, Shopee, Mercado Livre, Amazon; Tiny, Bling), além de catálogo, atendimento online e expedição — experiência que fortaleceu consistência, controle e execução ponta a ponta.",
-        badge:
-          "Objetivo: Estágio/Trainee · QA / Automação / Dados / Dev",
-      };
-    }
-    return {
-      title: "Sobre",
-      p1:
-        "Eu gosto de transformar caos em fluxo. Sou estudante de ADS e estou construindo minha carreira com uma mistura que me define bem: qualidade, automação e processo — entregas claras, testáveis e fáceis de manter.",
-      p2:
-        "Aprendi “na vida real” o que é segurar uma operação: fui o único colaborador de um petshop, cuidando do atendimento até a expedição. Depois, no e-commerce, virei multi-canal: pedidos, marketplaces (Shein, Shopee, Mercado Livre, Amazon), ERP (Tiny, Bling), catálogo, atendimento online e expedição. Esse cenário me treinou para lidar com regras, exceções e prazos — e foi aí que meu olhar de QA ficou automático: padronizar, reduzir erro e automatizar o repetitivo.",
-      badge:
-        "Buscando: Estágio/Trainee · Construir, testar, automatizar e evoluir",
-    };
-  }, [tone]);
-
   return (
     <div className="space-y-10">
-      {/* Header + toggle */}
-      <header className="space-y-4">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <h1 className="text-2xl sm:text-3xl font-bold">{intro.title}</h1>
+      {/* HERO (substitui o header antigo + toggle) */}
+      <PageHero
+        title="Sobre"
+        badge="Objetivo: Estágio/Trainee · QA / Automação / Dados / Dev"
+        subtitle="Sou estudante de ADS com foco em Qualidade de Software (QA), automação e organização de processos. Gosto de entregar projetos completos: código, testes e documentação, com clareza e consistência."
+        imageSrc="/contact-hero.jpg"
+        rightSlot={
+          <div className="rounded-xl border bg-background/70 backdrop-blur p-4">
+            <div className="text-sm font-medium">Links</div>
+            <div className="mt-2 flex flex-wrap gap-2">
+              <a
+                className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
+                href={CONTACT.linkedin}
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+              <a
+                className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
+                href={CONTACT.github}
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+              <a
+                className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
+                href={`mailto:${CONTACT.email}?subject=Contato%20-%20Portf%C3%B3lio`}
+              >
+                E-mail
+              </a>
+            </div>
+          </div>
+        }
+      >
+        <div className="space-y-3">
+          <p className="text-muted-foreground max-w-3xl leading-relaxed">
+            Minha base profissional vem de ambientes com ritmo e responsabilidade: atuei como único
+            colaborador de um petshop (atendimento, expedição e organização) e, mais recentemente,
+            como Assistente de E-commerce, operando marketplaces e ERPs (Shein, Shopee, Mercado
+            Livre, Amazon; Tiny, Bling), além de catálogo, atendimento online e expedição.
+          </p>
 
-          <div className="inline-flex rounded-md border p-1 w-fit">
-            <button
-              type="button"
-              onClick={() => setTone("corporativo")}
-              className={`px-3 py-1.5 text-sm rounded-md transition ${
-                tone === "corporativo"
-                  ? "bg-muted text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Tom corporativo
-            </button>
-            <button
-              type="button"
-              onClick={() => setTone("criativo")}
-              className={`px-3 py-1.5 text-sm rounded-md transition ${
-                tone === "criativo"
-                  ? "bg-muted text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Tom criativo
-            </button>
+          <p className="text-muted-foreground max-w-3xl leading-relaxed">
+            Essa experiência fortaleceu consistência, controle e execução ponta a ponta — e reforçou
+            minha mentalidade de QA: padronizar, reduzir erro e automatizar o repetitivo.
+          </p>
+
+          <div className="flex flex-wrap gap-3 pt-1">
+            <Link className="rounded-md border px-4 py-2 hover:bg-muted transition" href="/projects">
+              Ver projetos
+            </Link>
+            <Link className="rounded-md border px-4 py-2 hover:bg-muted transition" href="/contact">
+              Falar comigo
+            </Link>
           </div>
         </div>
-
-        <p className="text-xs inline-flex w-fit rounded-full border px-3 py-1 text-muted-foreground">
-          {intro.badge}
-        </p>
-
-        <div className="space-y-3">
-          <p className="text-muted-foreground max-w-3xl leading-relaxed">{intro.p1}</p>
-          <p className="text-muted-foreground max-w-3xl leading-relaxed">{intro.p2}</p>
-        </div>
-      </header>
+      </PageHero>
 
       {/* Experience */}
       <section className="space-y-4">
@@ -216,89 +219,65 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* QA mindset (games) */}
-      <section className="rounded-xl border p-5 space-y-3">
-        <h2 className="text-lg font-semibold">Mentalidade de QA (games)</h2>
-        <p className="text-sm text-muted-foreground leading-relaxed max-w-3xl">
-          Eu curto jogos como Red Dead Redemption 2, Bloodborne, The Last of Us, Silent Hill 2,
-          Pathologic 2, Risk of Rain 2 e Crash Twinsanity. Costumo jogar com olhar de testador.
-        </p>
 
-        <details className="group">
-          <summary className="cursor-pointer text-sm font-medium text-foreground select-none">
-            Ver o que eu observo ↓
-          </summary>
-          <ul className="mt-3 list-disc pl-5 text-muted-foreground space-y-2">
-            {qaMindsetGames.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </details>
+      {/* CTA (mantém sua ideia, só deixa mais “universal”) */}
+      <section className="rounded-xl border p-5 space-y-4">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 className="text-lg font-semibold">Contato</h2>
+            <p className="text-sm text-muted-foreground">
+              Aberto para estágio/trainee/júnior, freela e colaborações — QA, automação, dados/ETL e
+              desenvolvimento.
+            </p>
+          </div>
+
+          <Link href="/contact" className="text-sm text-muted-foreground hover:underline">
+            Ir para página de contato →
+          </Link>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div className="rounded-xl border p-4">
+            <div className="text-xs text-muted-foreground">E-mail</div>
+            <div className="text-sm font-medium break-all">{CONTACT.email}</div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <a
+                className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
+                href={`mailto:${CONTACT.email}?subject=Contato%20-%20Portf%C3%B3lio`}
+              >
+                Enviar e-mail
+              </a>
+              <CopyEmailButton />
+            </div>
+          </div>
+
+          <div className="rounded-xl border p-4">
+            <div className="text-xs text-muted-foreground">Links</div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <a
+                className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
+                href={CONTACT.linkedin}
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+              <a
+                className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
+                href={CONTACT.github}
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+
+            <p className="mt-3 text-xs text-muted-foreground">
+              EN: Open to internships/junior roles, freelance and collaborations.
+            </p>
+          </div>
+        </div>
       </section>
-
-      {/* CTA */}
-<section className="rounded-xl border p-5 space-y-4">
-  <div className="flex flex-wrap items-end justify-between gap-3">
-    <div>
-      <h2 className="text-lg font-semibold">Contato</h2>
-      <p className="text-sm text-muted-foreground">
-        Aberto para estágio/trainee/júnior, freela e colaborações — QA, automação, dados/ETL e dev.
-      </p>
-    </div>
-
-    <Link href="/contact" className="text-sm text-muted-foreground hover:underline">
-      Ir para página de contato →
-    </Link>
-  </div>
-
-  <div className="grid gap-3 sm:grid-cols-2">
-    <div className="rounded-xl border p-4">
-      <div className="text-xs text-muted-foreground">E-mail</div>
-      <div className="text-sm font-medium break-all">David_2553@hotmail.com</div>
-      <div className="mt-3 flex flex-wrap gap-2">
-        <a
-          className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
-          href="mailto:David_2553@hotmail.com?subject=Contato%20-%20Portf%C3%B3lio"
-        >
-          Enviar e-mail
-        </a>
-        <button
-          type="button"
-          onClick={() => navigator.clipboard.writeText("David_2553@hotmail.com")}
-          className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
-        >
-          Copiar e-mail
-        </button>
-      </div>
-    </div>
-
-    <div className="rounded-xl border p-4">
-      <div className="text-xs text-muted-foreground">Links</div>
-      <div className="mt-3 flex flex-wrap gap-2">
-        <a
-          className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
-          href="https://www.linkedin.com/in/david-silva-rodrigues-500190284/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          LinkedIn
-        </a>
-        <a
-          className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
-          href="https://github.com/Dev02553"
-          target="_blank"
-          rel="noreferrer"
-        >
-          GitHub
-        </a>
-      </div>
-
-      <p className="mt-3 text-xs text-muted-foreground">
-        EN: Open to internships/junior roles, freelance and collaborations.
-      </p>
-    </div>
-  </div>
-</section>
     </div>
   );
 }

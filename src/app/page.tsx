@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { projects } from "@/lib/projects";
 import ProjectCard from "@/components/project-card";
 
@@ -22,61 +23,105 @@ export default function HomePage() {
 
   return (
     <div className="space-y-10">
+
       {/* HERO */}
-      <section className="rounded-2xl border p-6 sm:p-8">
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              David — Portfólio
-            </h1>
-            <p className="text-muted-foreground max-w-2xl">
-              Projetos em QA, automação, dados e desenvolvimento. Páginas com case study (PT+EN),
-              comandos de execução e links.
-            </p>
+      <section className="rounded-2xl border overflow-hidden">
+        <div className="grid lg:grid-cols-2">
+
+          {/* TEXTO */}
+          <div className="p-6 sm:p-8 space-y-5">
+
+            <div className="space-y-2">
+              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                David Rodrigues
+              </h1>
+
+              <p className="text-muted-foreground max-w-prose leading-relaxed">
+                Portfólio com projetos em <b>QA</b>, <b>automação</b>, <b>dados</b> e
+                <b> desenvolvimento</b>. Cada projeto possui case study, instruções de
+                execução e estrutura organizada.
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/projects"
+                className="rounded-md border px-4 py-2 hover:bg-muted transition"
+              >
+                Ver projetos
+              </Link>
+
+              <Link
+                href="/about"
+                className="rounded-md border px-4 py-2 hover:bg-muted transition"
+              >
+                Sobre mim
+              </Link>
+
+              <Link
+                href="/contact"
+                className="rounded-md border px-4 py-2 hover:bg-muted transition"
+              >
+                Contato
+              </Link>
+
+              <a
+                href="https://github.com/Dev02553"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-md border px-4 py-2 hover:bg-muted transition"
+              >
+                GitHub
+              </a>
+            </div>
+
+            {/* métricas */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div className="rounded-xl border p-4">
+                <div className="text-xs text-muted-foreground">Projetos</div>
+                <div className="text-lg font-semibold">{total}</div>
+              </div>
+
+              <div className="rounded-xl border p-4">
+                <div className="text-xs text-muted-foreground">MVP</div>
+                <div className="text-lg font-semibold">{totalMvp}</div>
+              </div>
+
+              <div className="rounded-xl border p-4">
+                <div className="text-xs text-muted-foreground">Completos</div>
+                <div className="text-lg font-semibold">{totalDone}</div>
+              </div>
+            </div>
+
           </div>
 
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/projects"
-              className="rounded-md border px-4 py-2 hover:bg-muted transition"
-            >
-              Ver projetos
-            </Link>
+          {/* IMAGEM */}
+          <div className="relative min-h-[260px] lg:min-h-full overflow-hidden">
 
-            <Link
-              href="/about"
-              className="rounded-md border px-4 py-2 hover:bg-muted transition"
-            >
-              Sobre mim
-            </Link>
+            <Image
+              src="/contact-hero.jpg"
+              alt="Hero"
+              fill
+              priority
+              className="object-cover opacity-70 brightness-95 contrast-110 saturate-120"
+            />
 
-            <a
-              href="https://github.com/Dev02553"
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-md border px-4 py-2 hover:bg-muted transition"
-            >
-              GitHub
-            </a>
-          </div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/25 to-transparent" />
 
-          {/* mini-métricas */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-            <div className="rounded-xl border p-4">
-              <div className="text-xs text-muted-foreground">Projetos</div>
-              <div className="text-lg font-semibold">{total}</div>
+            <div className="absolute bottom-4 left-4 right-4 rounded-xl border bg-background/70 backdrop-blur p-4">
+              <div className="text-sm font-medium">
+                Foco
+              </div>
+              <div className="text-sm text-muted-foreground">
+                QA • Automação • Dados • Desenvolvimento
+              </div>
             </div>
-            <div className="rounded-xl border p-4">
-              <div className="text-xs text-muted-foreground">MVP</div>
-              <div className="text-lg font-semibold">{totalMvp}</div>
-            </div>
-            <div className="rounded-xl border p-4">
-              <div className="text-xs text-muted-foreground">Completos</div>
-              <div className="text-lg font-semibold">{totalDone}</div>
-            </div>
+
           </div>
         </div>
       </section>
+
 
       {/* DESTAQUES */}
       <section className="space-y-4">
@@ -84,11 +129,14 @@ export default function HomePage() {
           <div>
             <h2 className="text-xl font-semibold">Destaques</h2>
             <p className="text-sm text-muted-foreground">
-              Alguns projetos recentes pra você ver rápido.
+              Alguns projetos recentes para explorar rapidamente.
             </p>
           </div>
 
-          <Link href="/projects" className="text-sm text-muted-foreground hover:underline">
+          <Link
+            href="/projects"
+            className="text-sm text-muted-foreground hover:underline"
+          >
             Ver todos →
           </Link>
         </div>
@@ -99,6 +147,7 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
     </div>
   );
 }
