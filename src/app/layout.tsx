@@ -8,6 +8,29 @@ export const metadata: Metadata = {
   title: "David Rodrigues · Portfólio",
   description:
     "Projetos em QA, automação, dados e desenvolvimento (Java, Python, Next.js).",
+  openGraph: {
+    title: "David Rodrigues · Portfólio",
+    description:
+      "Projetos em QA, automação, dados e desenvolvimento (Java, Python, Next.js).",
+    siteName: "Portfólio · David Rodrigues",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "David Rodrigues · Portfólio",
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "David Rodrigues · Portfólio",
+    description:
+      "Projetos em QA, automação, dados e desenvolvimento (Java, Python, Next.js).",
+    images: ["/og.jpg"],
+  },
 };
 
 export default function RootLayout({

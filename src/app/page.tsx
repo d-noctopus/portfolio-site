@@ -96,11 +96,39 @@ export default function HomePage() {
 
           </div>
 
+          {/* STACK */}
+<section className="space-y-3">
+  <h2 className="text-lg font-semibold">Tecnologias principais</h2>
+
+  <div className="flex flex-wrap gap-2">
+    {[
+      "Python",
+      "Java",
+      "SQL",
+      "Selenium",
+      "JUnit",
+      "Next.js",
+      "TypeScript",
+      "Pandas",
+      "Tailwind",
+      "Git",
+    ].map((tech) => (
+      <span
+        key={tech}
+        className="text-xs rounded-full border px-3 py-1 text-muted-foreground"
+      >
+        {tech}
+      </span>
+    ))}
+  </div>
+</section>
+
+
           {/* IMAGEM */}
           <div className="relative min-h-[260px] lg:min-h-full overflow-hidden">
 
             <Image
-              src="/contact-hero.jpg"
+              src="/hero.jpg"
               alt="Hero"
               fill
               priority
