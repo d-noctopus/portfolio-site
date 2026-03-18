@@ -367,6 +367,7 @@ export const projects: Project[] = [
     "Estrutura pronta para deploy no Vercel",
   ],
   repoUrl: "https://github.com/Dev02553/dashboard-next-react-api",
+  demoUrl: "https://dashboard-next-react-api.vercel.app",
   status: "Completo",
   year: "2026",
 
