@@ -146,8 +146,7 @@ export default async function ProjectPage({
           })()}
 
           <p className="text-sm text-muted-foreground">
-            Dica: rode dentro da pasta que contém o <code>pom.xml</code> (Java/Maven)
-            ou o <code>package.json</code> (Node).
+  Dica: rode dentro da pasta que contém o <code>package.json</code> ou o <code>pom.xml</code> do projeto.
           </p>
         </section>
       ) : null}
