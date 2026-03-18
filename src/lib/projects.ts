@@ -56,10 +56,11 @@ export const projects: Project[] = [
     tags: ["Dados", "Automação"],
     stack: ["Python", "Pandas", "OpenPyXL", "Pytest", "CLI"],
     highlights: [
-      "Extract → Transform → Validate → Load",
-      "Regras de qualidade: obrigatórios, tipos, duplicados, datas",
-      "Relatório final em XLSX com aba Data Quality",
-    ],
+  "Extract → Transform → Validate → Load com logs por etapa",
+  "9 regras de Data Quality: obrigatórios, tipos, duplicados, datas, domínio",
+  "DQIssue como modelo de dados para evidências rastreáveis",
+  "12 testes com Pytest cobrindo todas as regras e cenários de pipeline",
+],
     repoUrl: "https://github.com/Dev02553/python-etl-automation",
     status: "Completo",
     year: "2024",
@@ -74,7 +75,7 @@ export const projects: Project[] = [
     run: {
       headless: "python -m pytest -q",
       ui: "python main.py --input ./data --output ./output/report.xlsx",
-    },
+},
 
     caseStudy: [
       {
