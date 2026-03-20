@@ -11,7 +11,7 @@ export function generateStaticParams(): RouteParams[] {
 export default async function ProjectPage({
   params,
 }: {
-  params: RouteParams | Promise<RouteParams>;
+  params: Promise<RouteParams>;
 }) {
   const { slug } = await Promise.resolve(params);
   const project = projects.find((p) => p.slug === slug);
