@@ -29,15 +29,14 @@ export default async function ProjectPage({
 
   return (
     <div className="space-y-10">
-
       <header className="space-y-3">
         <Link href="/projects" className="text-sm text-muted-foreground hover:underline">
           ← Voltar
         </Link>
 
         <div className="flex flex-wrap items-center gap-3">
-          <h1 className="text-2xl sm:text-3xl font-bold">{project.title}</h1>
-          <span className="text-xs rounded-full border px-2 py-1 text-muted-foreground">
+          <h1 className="text-2xl font-bold sm:text-3xl">{project.title}</h1>
+          <span className="rounded-full border px-2 py-1 text-xs text-muted-foreground">
             {project.status} • {project.year}
           </span>
         </div>
@@ -46,7 +45,10 @@ export default async function ProjectPage({
 
         <div className="flex flex-wrap gap-2">
           {project.tags.map((t) => (
-            <span key={t} className="text-xs rounded-full border px-2 py-1 text-muted-foreground">
+            <span
+              key={t}
+              className="rounded-full border px-2 py-1 text-xs text-muted-foreground"
+            >
               {t}
             </span>
           ))}
@@ -54,24 +56,66 @@ export default async function ProjectPage({
 
         <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
           {project.stack.map((s) => (
-            <span key={s} className="rounded-md bg-muted px-2 py-1">{s}</span>
+            <span key={s} className="rounded-md bg-muted px-2 py-1">
+              {s}
+            </span>
           ))}
         </div>
 
         <div className="flex flex-wrap gap-3 pt-2">
           {project.repoUrl ? (
-            <a className="rounded-md border px-4 py-2 hover:bg-muted transition" href={project.repoUrl} target="_blank" rel="noreferrer">
+            <a
+              className="rounded-md border px-4 py-2 transition hover:bg-muted"
+              href={project.repoUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
               Repositório
             </a>
           ) : null}
+
           {project.demoUrl ? (
-            <a className="rounded-md border px-4 py-2 hover:bg-muted transition" href={project.demoUrl} target="_blank" rel="noreferrer">
+            <a
+              className="rounded-md border px-4 py-2 transition hover:bg-muted"
+              href={project.demoUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
               Demo
             </a>
           ) : null}
         </div>
 
-        {project.previewUrl ? (
+        {project.gallery?.length ? (
+          <div className="mt-2 space-y-3">
+            <div className="text-sm font-medium text-muted-foreground">
+              Preview do sistema
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {project.gallery.map(
+                (
+                  image: { src: string; alt?: string },
+                  index: number
+                ) => (
+                  <div
+                    key={`${image.src}-${index}`}
+                    className="overflow-hidden rounded-2xl border"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt ?? `Preview ${index + 1} de ${project.title}`}
+                      width={1400}
+                      height={900}
+                      className="w-full object-cover"
+                      priority={index === 0}
+                    />
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        ) : project.previewUrl ? (
           <div className="mt-2 overflow-hidden rounded-2xl border">
             <Image
               src={project.previewUrl}
@@ -93,7 +137,9 @@ export default async function ProjectPage({
               <div key={m.label} className="rounded-lg border p-4">
                 <div className="text-xs text-muted-foreground">{m.label}</div>
                 <div className="text-lg font-semibold">{m.value}</div>
-                {m.hint ? <div className="mt-1 text-xs text-muted-foreground">{m.hint}</div> : null}
+                {m.hint ? (
+                  <div className="mt-1 text-xs text-muted-foreground">{m.hint}</div>
+                ) : null}
               </div>
             ))}
           </div>
@@ -110,6 +156,7 @@ export default async function ProjectPage({
                 <code>{project.run.headless}</code>
               </pre>
             </div>
+
             {project.run.ui ? (
               <div className="rounded-lg border p-4">
                 <div className="mb-2 text-sm font-medium">UI (visual)</div>
@@ -119,8 +166,10 @@ export default async function ProjectPage({
               </div>
             ) : null}
           </div>
+
           <p className="text-sm text-muted-foreground">
-            Dica: rode dentro da pasta que contém o <code>package.json</code> ou o <code>pom.xml</code> do projeto.
+            Dica: rode dentro da pasta que contém o <code>package.json</code> ou o{" "}
+            <code>pom.xml</code> do projeto.
           </p>
         </section>
       ) : null}
@@ -136,32 +185,40 @@ export default async function ProjectPage({
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">Case Study</h2>
+
         {project.caseStudy?.length ? (
           <div className="space-y-6">
             {project.caseStudy.map((sec) => (
-              <div key={sec.id} className="rounded-lg border p-5 space-y-3">
+              <div key={sec.id} className="space-y-3 rounded-lg border p-5">
                 <div className="space-y-1">
                   <div className="text-base font-semibold">{sec.title.pt}</div>
                   <div className="text-sm text-muted-foreground">{sec.title.en}</div>
                 </div>
+
                 {sec.body ? (
                   <div className="space-y-2">
                     <p className="text-muted-foreground">{sec.body.pt}</p>
-                    <p className="italic opacity-90 text-muted-foreground">{sec.body.en}</p>
+                    <p className="text-muted-foreground italic opacity-90">{sec.body.en}</p>
                   </div>
                 ) : null}
+
                 {sec.bullets ? (
                   <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                     <div>
                       <div className="mb-2 text-sm font-medium">PT</div>
                       <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
-                        {sec.bullets.pt.map((b) => <li key={b}>{b}</li>)}
+                        {sec.bullets.pt.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
                       </ul>
                     </div>
+
                     <div>
                       <div className="mb-2 text-sm font-medium">EN</div>
                       <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
-                        {sec.bullets.en.map((b) => <li key={b}>{b}</li>)}
+                        {sec.bullets.en.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
                       </ul>
                     </div>
                   </div>
@@ -171,11 +228,11 @@ export default async function ProjectPage({
           </div>
         ) : (
           <p className="text-muted-foreground">
-            Em breve: problema, solução, arquitetura, testes, resultados e próximos passos (PT + EN).
+            Em breve: problema, solução, arquitetura, testes, resultados e próximos
+            passos (PT + EN).
           </p>
         )}
       </section>
-
     </div>
   );
 }

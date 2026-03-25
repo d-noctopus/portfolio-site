@@ -26,6 +26,11 @@ export type CaseStudySection = {
   bullets?: { pt: string[]; en: string[] };
 };
 
+export type ProjectImage = {
+  src: string;
+  alt?: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -36,6 +41,7 @@ export type Project = {
   repoUrl?: string;
   demoUrl?: string;
   previewUrl?: string;
+  gallery?: ProjectImage[];
   status: "Em construção" | "MVP" | "Completo";
   year: string;
   metrics?: ProjectMetric[];
@@ -359,32 +365,52 @@ export const projects: Project[] = [
   // =========================
   {
   slug: "react-dashboard",
-  title: "Dashboard (Next/React) consumindo API",
+  title: "Dashboard de Catálogo com Busca em Linguagem Natural",
   subtitle:
-    "Interface de produto com tabela, filtros, formulários e integração com backend.",
+    "Como transformar dados em decisões — uma interface que faz o dado trabalhar por você.",
   tags: ["Frontend", "Produto"],
-  stack: ["Next.js", "React", "TypeScript", "Tailwind", "Zod", "API"],
+  stack: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Zod",
+    "Vitest",
+    "Testing Library",
+    "API Routes",
+  ],
   highlights: [
-    "Schema Zod compartilhado entre cliente e API route",
-    "Tipos centralizados em lib/types.ts com PRODUCT_STATUSES as const",
-    "Skeleton de loading, empty state e labels acessíveis",
-    "Estrutura pronta para deploy no Vercel",
+    "Busca em linguagem natural para consultas como “sem estoque”, “estoque baixo” e “mais caro”",
+    "Filtros, ordenação e resumo visual dos critérios ativos",
+    "KPIs para leitura rápida de estoque, atividade e ticket médio",
+    "API mock integrada com validação no cliente e no servidor",
+    "Testes automatizados e build de produção validada",
   ],
   repoUrl: "https://github.com/Dev02553/dashboard-next-react-api",
   demoUrl: "https://dashboard-next-react-api.vercel.app",
-  previewUrl: "/dashboard-preview.png",
+  previewUrl: "/dashboard-preview-1.png",
+gallery: [
+  {
+    src: "/dashboard-preview-1.png",
+    alt: "Visão geral do dashboard com KPIs, filtros e tabela de produtos",
+  },
+  {
+    src: "/dashboard-preview-2.png",
+    alt: "Dashboard com filtros aplicados e resumo de resultados ativos",
+  },
+],
   status: "Completo",
   year: "2026",
 
   metrics: [
-    { label: "UI", value: "Tabela + filtros", hint: "busca e ordenação" },
-    { label: "Forms", value: "Zod", hint: "validação cliente e servidor" },
-    { label: "Tipos", value: "Centralizados", hint: "lib/types.ts" },
-    { label: "Deploy", value: "Vercel-ready", hint: "build estável" },
+    { label: "Busca", value: "Linguagem natural", hint: "consultas operacionais" },
+    { label: "UI", value: "KPIs + filtros", hint: "leitura rápida" },
+    { label: "Validação", value: "Cliente + API", hint: "dados consistentes" },
+    { label: "Qualidade", value: "Testes + build", hint: "pronto para deploy" },
   ],
 
   run: {
-    headless: "npm run build",
+    headless: "npm run test && npm run build",
     ui: "npm run dev",
   },
 
@@ -393,8 +419,8 @@ export const projects: Project[] = [
       id: "context",
       title: { pt: "Contexto", en: "Context" },
       body: {
-        pt: "Dashboards precisam ser rápidos e claros: listar dados, filtrar, editar e manter consistência visual.",
-        en: "Dashboards must be fast and clear: list data, filter, edit, and keep visual consistency.",
+        pt: "Em operações de varejo, os dados só geram valor quando conseguem chegar rápido à decisão. Se informações como estoque, status e categoria exigem esforço demais para serem interpretadas, a operação perde tempo e resposta. Este projeto nasceu para transformar uma listagem comum em uma interface mais clara, navegável e útil para análise.",
+        en: "In retail operations, data only creates value when it reaches decision-making quickly. If information such as stock, status and category takes too much effort to interpret, operations lose time and responsiveness. This project was created to turn a simple listing into a clearer, navigable and more useful interface for analysis.",
       },
     },
     {
@@ -402,50 +428,14 @@ export const projects: Project[] = [
       title: { pt: "Objetivo", en: "Goal" },
       bullets: {
         pt: [
-          "Criar UI focada em produto: tabela, filtros e formulários.",
-          "Centralizar tipos e constantes para escala e manutenção.",
-          "Compartilhar schema Zod entre cliente e API sem duplicação.",
+          "Reduzir o atrito na leitura do catálogo com uma interface mais clara.",
+          "Destacar rapidamente produtos sem estoque, itens inativos e sinais relevantes da operação.",
+          "Combinar busca, filtros, ordenação e indicadores para apoiar decisões mais rápidas.",
         ],
         en: [
-          "Create a product-focused UI: table, filters and forms.",
-          "Centralize types and constants for scale and maintenance.",
-          "Share Zod schema between client and API without duplication.",
-        ],
-      },
-    },
-    {
-      id: "approach",
-      title: { pt: "Abordagem", en: "Approach" },
-      bullets: {
-        pt: [
-          "PRODUCT_STATUSES as const como única fonte de verdade para status.",
-          "useMemo para derivar lista filtrada sem efeitos colaterais.",
-          "htmlFor + id em todos os campos para acessibilidade.",
-          "Skeleton com animate-pulse nativo do Tailwind no loading.",
-        ],
-        en: [
-          "PRODUCT_STATUSES as const as the single source of truth for statuses.",
-          "useMemo to derive filtered list without side effects.",
-          "htmlFor + id on all fields for accessibility.",
-          "Skeleton with Tailwind's native animate-pulse on loading.",
-        ],
-      },
-    },
-    {
-      id: "next",
-      title: { pt: "Próximos passos", en: "Next steps" },
-      bullets: {
-        pt: [
-          "Paginação na tabela.",
-          "Custom hook useProducts para encapsular fetch e estado.",
-          "Testes com Vitest + Testing Library.",
-          "Integração com backend real e autenticação.",
-        ],
-        en: [
-          "Table pagination.",
-          "Custom hook useProducts to encapsulate fetch and state.",
-          "Tests with Vitest + Testing Library.",
-          "Real backend integration and authentication.",
+          "Reduce friction when reading the catalog with a clearer interface.",
+          "Quickly highlight out-of-stock products, inactive items and relevant operational signals.",
+          "Combine search, filters, sorting and indicators to support faster decisions.",
         ],
       },
     },
