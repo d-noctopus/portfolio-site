@@ -1,36 +1,150 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# David Rodrigues · Portfólio
 
-## Getting Started
+Portfólio desenvolvido com **Next.js**, **React**, **TypeScript** e **Tailwind CSS** para apresentar projetos em **QA**, **automação**, **dados** e **desenvolvimento**.
 
-First, run the development server:
+A proposta do site é reunir projetos com contexto, stack, métricas, instruções de execução, links de repositório/demo e páginas de **case study**, tornando a navegação mais clara para recrutadores, gestores e pessoas técnicas.
+
+## Acesso
+
+- **Portfólio online:** https://portfolio-site-nine-tau-41.vercel.app/
+- **GitHub:** https://github.com/Dev02553
+
+---
+
+## Sobre o projeto
+
+Este projeto foi criado para servir como vitrine técnica e profissional, organizando experiências práticas em uma interface moderna, responsiva e fácil de navegar.
+
+O portfólio apresenta:
+- página inicial com visão geral
+- página de projetos
+- páginas dinâmicas por projeto
+- informações de stack, highlights e métricas
+- links para repositórios e demos
+- case studies em português e inglês
+- previews visuais dos sistemas
+
+Além da parte visual, o projeto também foi estruturado para facilitar manutenção e crescimento, com dados centralizados e páginas geradas de forma consistente.
+
+---
+
+## Principais funcionalidades
+
+- **Listagem de projetos** com foco em clareza visual
+- **Páginas dinâmicas** por slug (`/projects/[slug]`)
+- **Case studies** com contexto, abordagem, aprendizados e próximos passos
+- **Preview visual** dos projetos
+- **Links para repositório e demo**
+- **Seções bilíngues** em partes do conteúdo
+- **Layout responsivo**
+- **Deploy na Vercel**
+
+---
+
+## Stack utilizada
+
+- **Next.js**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **App Router**
+- **Vercel**
+
+---
+
+## Estrutura do projeto
 
 ```bash
+src/
+├── app/
+│   ├── about/
+│   ├── contact/
+│   ├── projects/
+│   │   └── [slug]/
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+├── lib/
+│   ├── projects.ts
+│   └── types.ts
+└── styles/
+Organização principal
+src/app → rotas e páginas
+src/components → componentes reutilizáveis
+src/lib/projects.ts → dados dos projetos
+src/lib/types.ts → tipagem dos projetos e seções
+public/ → imagens, previews e assets
+Como executar localmente
+1. Clonar o repositório
+git clone https://github.com/Dev02553/portfolio-site.git
+cd portfolio-site
+2. Instalar dependências
+npm install
+3. Rodar em desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A aplicação ficará disponível em:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
+Scripts disponíveis
+npm run dev
+npm run build
+npm run start
+npm run dev → inicia o ambiente de desenvolvimento
+npm run build → gera a build de produção
+npm run start → executa a build em modo de produção
+Como adicionar um novo projeto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Os projetos são centralizados em:
 
-## Learn More
+src/lib/projects.ts
 
-To learn more about Next.js, take a look at the following resources:
+Para adicionar um novo item ao portfólio, basta criar um novo objeto com campos como:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+slug
+title
+subtitle
+tags
+stack
+highlights
+repoUrl
+demoUrl
+previewUrl
+metrics
+run
+caseStudy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Se houver preview visual, a imagem deve ser colocada na pasta:
 
-## Deploy on Vercel
+public/
+Objetivo do portfólio
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Este portfólio foi desenvolvido para:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+apresentar projetos de forma mais estratégica
+mostrar não só código, mas também contexto e aplicação prática
+facilitar leitura por recrutadores e pessoas técnicas
+reunir em um só lugar projetos de QA, automação, backend, frontend e dados
+Próximos passos
+
+Como evolução do projeto, os próximos passos naturais são:
+
+adicionar mais projetos e estudos de caso
+refinar SEO e metadados sociais
+expandir a personalização visual
+incluir novas seções de experiência e trajetória
+melhorar ainda mais a apresentação dos previews e demos
+Deploy
+
+O projeto está publicado na Vercel e pode ser atualizado automaticamente a cada novo push no GitHub.
+
+Para gerar a build localmente antes do deploy:
+
+npm run build
+Autor
+
+David Rodrigues
+
+GitHub: https://github.com/Dev02553
+LinkedIn: https://www.linkedin.com/in/david-silva-rodrigues-500190284/
+E-mail: David_2553@hotmail.com
