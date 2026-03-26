@@ -163,111 +163,155 @@ export const projects: Project[] = [
   // 2) ParaBank QA
   // =========================
   {
-    slug: "parabank-selenium-qa",
-    title: "QA E2E — Selenium + JUnit (ParaBank)",
-    subtitle:
-      "Suite E2E com 10 casos passando, Allure Report, WebDriverManager e CI via GitHub Actions.",
-    tags: ["QA", "Automação"],
-    stack: ["Java", "JUnit 5", "Selenium 4", "Maven", "Allure Report", "WebDriverManager", "GitHub Actions"],
-    highlights: [
-      "10 casos E2E: login, cadastro, contas, extrato, seguranca e perfil",
-        "Relatorio Allure com dashboard, timeline e screenshots em falha",
-        "WebDriverManager: sem chromedriver.exe no repositorio",
-        "Locators centralizados por classe",
-        "CI via GitHub Actions com execucao headless",
-        "Cenarios positivos, negativos e de seguranca cobertos",
-    ],
-    repoUrl: "https://github.com/Dev02553/Testes-Automatizados_ParaBank",
-    status: "Completo",
-    year: "2025",
-
-    metrics: [
-      { label: "Casos E2E", value: "10", hint: "100% passando" },
-        { label: "Relatorio", value: "Allure", hint: "dashboard + screenshots" },
-        { label: "Driver", value: "WebDriverManager", hint: "sem binario no repo" },
-        { label: "CI", value: "GitHub Actions", hint: "headless a cada push" },
-    ],
-
-    run: {
-      headless: "mvn test -Dheadless=true",
-        ui: "mvn test && mvn allure:serve",
+  slug: "parabank-selenium-qa",
+  title: "QA E2E — Selenium + JUnit (ParaBank)",
+  subtitle:
+    "Automação end-to-end com 10 casos passando, relatório Allure e execução estruturada para uso local e integração contínua.",
+  tags: ["QA", "Automação"],
+  stack: [
+    "Java",
+    "JUnit 5",
+    "Selenium 4",
+    "Maven",
+    "Allure Report",
+    "WebDriverManager",
+    "GitHub Actions",
+  ],
+  highlights: [
+    "Suite E2E com 10 casos automatizados cobrindo fluxos relevantes do ParaBank",
+    "Relatório Allure com visão consolidada da execução e evidências dos testes",
+    "WebDriverManager para gerenciamento automático de drivers",
+    "Estrutura organizada para reduzir flakiness e facilitar manutenção",
+    "Execução compatível com ambiente local e pipeline de CI",
+  ],
+  repoUrl: "https://github.com/Dev02553/Testes-Automatizados_ParaBank",
+  previewUrl: "/parabank-preview-1.png",
+  gallery: [
+    {
+      src: "/parabank-preview-1.png",
+      alt: "Allure Report do projeto ParaBank com 10 casos de teste e 100% de aprovação",
     },
+    {
+      src: "/parabank-preview-2.png",
+      alt: "Detalhamento das suítes automatizadas do projeto ParaBank no Allure Report",
+    },
+  ],
+  status: "Completo",
+  year: "2025",
 
-    caseStudy: [
-      {
-        id: "context",
-        title: { pt: "Contexto", en: "Context" },
-        body: {
-          pt: "O ParaBank (Parasoft) é um sistema demo usado para praticar automação E2E. Por ser público, pode variar a UI/mensagens e ficar instável.",
-          en: "ParaBank (Parasoft) is a demo banking app used to practice E2E automation. As a public environment, UI/messages may vary and it can be unstable.",
-        },
-      },
-      {
-        id: "goal",
-        title: { pt: "Objetivo", en: "Goal" },
-        bullets: {
-          pt: [
-            "Cobrir fluxos críticos (login, contas, transferências, perfil).",
-            "Aplicar boas práticas (setup/teardown, waits, evidências).",
-            "Executar em headless (CI) e visual (UI).",
-          ],
-          en: [
-            "Cover critical flows (login, accounts, transfers, profile).",
-            "Apply best practices (setup/teardown, waits, evidence).",
-            "Run headless (CI) and visual (UI).",
-          ],
-        },
-      },
-      {
-        id: "approach",
-        title: { pt: "Abordagem", en: "Approach" },
-        bullets: {
-          pt: [
-            "BaseTest centraliza WebDriver, waits e helpers.",
-            "Seletores mais estáveis + waits explícitos para reduzir flakiness.",
-            "Screenshot automático em falha.",
-          ],
-          en: [
-            "BaseTest centralizes WebDriver, waits and helpers.",
-            "More stable selectors + explicit waits to reduce flakiness.",
-            "Automatic screenshot on failure.",
-          ],
-        },
-      },
-      {
-        id: "results",
-        title: { pt: "Resultados", en: "Results" },
-        bullets: {
-          pt: [
-            "Suíte executável via Maven com logs claros.",
-            "Cobertura dos cenários principais com maior estabilidade.",
-            "Estrutura pronta para evoluir com Page Objects.",
-          ],
-          en: [
-            "Maven-runnable suite with clear logs.",
-            "Main scenario coverage with improved stability.",
-            "Structure ready to evolve with Page Objects.",
-          ],
-        },
-      },
-      {
-        id: "next",
-        title: { pt: "Próximos passos", en: "Next steps" },
-        bullets: {
-          pt: [
-            "Implementar Page Object Model (POM) para separar seletores dos testes.",
-              "Execucao paralela com TestNG e threads.",
-              "Publicar relatorio Allure como artefato no GitHub Actions.",
-          ],
-          en: [
-            "Implement Page Object Model (POM) to separate selectors from tests.",
-              "Parallel execution with TestNG and threads.",
-              "Publish Allure report as artifact in GitHub Actions.",
-          ],
-        },
-      },
-    ],
+  metrics: [
+    { label: "Cobertura", value: "10 casos E2E", hint: "fluxos principais" },
+    { label: "Resultado", value: "100% pass", hint: "execução reportada no Allure" },
+    { label: "Relatório", value: "Allure", hint: "visão consolidada da suíte" },
+    { label: "Execução", value: "Maven", hint: "local e CI" },
+  ],
+
+  run: {
+    headless: "mvn test -Dheadless=true",
+    ui: "mvn test; mvn allure:serve",
   },
+
+  caseStudy: [
+    {
+      id: "context",
+      title: { pt: "Contexto", en: "Context" },
+      body: {
+        pt: "O ParaBank, da Parasoft, foi utilizado como ambiente público para praticar automação E2E em uma aplicação web com fluxos reais de cadastro, autenticação, contas, transferências e atualização de perfil. Por ser um ambiente demo acessível publicamente, ele também ajuda a exercitar cuidados com estabilidade, sincronização e manutenção dos testes.",
+        en: "ParaBank, by Parasoft, was used as a public environment to practice E2E automation in a web application with real flows such as registration, authentication, accounts, transfers and profile updates. As a publicly accessible demo environment, it also helps exercise stability, synchronization and test maintainability practices.",
+      },
+    },
+    {
+      id: "goal",
+      title: { pt: "Objetivo", en: "Goal" },
+      bullets: {
+        pt: [
+          "Cobrir fluxos relevantes da aplicação com foco em comportamento real do usuário.",
+          "Aplicar boas práticas de automação, incluindo waits, setup e teardown consistentes.",
+          "Executar a suíte de forma confiável em modo local e em integração contínua.",
+        ],
+        en: [
+          "Cover relevant application flows with a focus on real user behavior.",
+          "Apply automation best practices, including waits and consistent setup/teardown.",
+          "Run the suite reliably in local mode and continuous integration.",
+        ],
+      },
+    },
+    {
+      id: "approach",
+      title: { pt: "Abordagem", en: "Approach" },
+      bullets: {
+        pt: [
+          "Uso de Selenium 4 com Java para interação com a interface web.",
+          "Organização dos testes com JUnit 5 para manter execução previsível.",
+          "WebDriverManager para evitar dependência manual de binários no repositório.",
+          "Relatórios com Allure para leitura rápida de resultados e evidências da execução.",
+          "Execução compatível com pipeline de CI via GitHub Actions.",
+        ],
+        en: [
+          "Use of Selenium 4 with Java for web UI interaction.",
+          "Test organization with JUnit 5 to keep execution predictable.",
+          "WebDriverManager to avoid manual binary dependencies in the repository.",
+          "Allure reports for quick reading of results and execution evidence.",
+          "Execution compatible with CI pipelines through GitHub Actions.",
+        ],
+      },
+    },
+    {
+      id: "results",
+      title: { pt: "Resultados", en: "Results" },
+      bullets: {
+        pt: [
+          "Suite com 10 casos de teste passando.",
+          "Relatório Allure indicando 100% de sucesso na execução registrada.",
+          "Melhor visibilidade dos resultados por meio de overview e suites organizadas.",
+          "Projeto mais sólido para demonstração técnica em portfólio.",
+        ],
+        en: [
+          "Test suite with 10 passing test cases.",
+          "Allure report showing a 100% success rate in the recorded run.",
+          "Better visibility of results through organized overview and suites.",
+          "A stronger project for technical portfolio presentation.",
+        ],
+      },
+    },
+    {
+      id: "learning",
+      title: { pt: "Aprendizados", en: "Learnings" },
+      bullets: {
+        pt: [
+          "Prática de automação E2E com foco em fluxos reais de navegação e validação.",
+          "Uso de relatórios como apoio para leitura rápida da qualidade da suíte.",
+          "Organização de testes pensando em manutenção e previsibilidade.",
+          "Integração entre execução local e pipeline automatizada.",
+        ],
+        en: [
+          "Practice with E2E automation focused on real navigation and validation flows.",
+          "Use of reports to support quick reading of suite quality.",
+          "Test organization with maintainability and predictability in mind.",
+          "Integration between local execution and automated pipelines.",
+        ],
+      },
+    },
+    {
+      id: "next",
+      title: { pt: "Próximos passos", en: "Next steps" },
+      bullets: {
+        pt: [
+          "Expandir cobertura para cenários negativos e validações adicionais.",
+          "Aprimorar isolamento de massa de dados entre execuções.",
+          "Publicar relatórios Allure como artefatos no GitHub Actions.",
+          "Evoluir a suíte com padrões ainda mais reutilizáveis.",
+        ],
+        en: [
+          "Expand coverage to negative scenarios and additional validations.",
+          "Improve test data isolation between runs.",
+          "Publish Allure reports as artifacts in GitHub Actions.",
+          "Evolve the suite with even more reusable patterns.",
+        ],
+      },
+    },
+  ],
+},
 
   // =========================
   // 3) Java API CRUD
