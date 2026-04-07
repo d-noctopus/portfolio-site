@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Quality Report</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 24px;
+      background: #f7f8fa;
+      color: #1f2937;
+    }
+    h1, h2 {
+      margin-bottom: 12px;
+    }
+    .metrics {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 20px 0 28px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 16px 20px;
+      min-width: 200px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .card .label {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+    .card .value {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f3f4f6;
+      position: sticky;
+      top: 0;
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    .empty {
+      color: #6b7280;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>Data Quality Report</h1>
+
+  <div class="metrics">
+    <div class="card">
+      <div class="label">Total de linhas</div>
+      <div class="value">10</div>
+    </div>
+    <div class="card">
+      <div class="label">Linhas com problema</div>
+      <div class="value">8</div>
+    </div>
+    <div class="card">
+      <div class="label">DQ score</div>
+      <div class="value">20.0%</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Resumo por regra</h2>
+    
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>rule_name</th><th>severity</th><th>description</th><th>failed_rows</th><th>pass_rate</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>required_customer_id</td><td>high</td><td>customer_id é obrigatório.</td><td>1</td><td>0.90</td></tr><tr><td>required_email</td><td>high</td><td>email é obrigatório.</td><td>1</td><td>0.90</td></tr><tr><td>email_format</td><td>high</td><td>email deve possuir formato válido.</td><td>1</td><td>0.90</td></tr><tr><td>unique_customer_id</td><td>high</td><td>customer_id deve ser único.</td><td>2</td><td>0.80</td></tr><tr><td>allowed_country</td><td>medium</td><td>country deve pertencer ao domínio LATAM permitido.</td><td>1</td><td>0.90</td></tr><tr><td>signup_date_valid_type</td><td>high</td><td>signup_date deve ser uma data válida.</td><td>0</td><td>1.00</td></tr><tr><td>signup_date_not_future</td><td>medium</td><td>signup_date não pode estar no futuro.</td><td>1</td><td>0.90</td></tr><tr><td>credit_limit_numeric_type</td><td>high</td><td>credit_limit deve ser numérico.</td><td>0</td><td>1.00</td></tr><tr><td>credit_limit_non_negative</td><td>medium</td><td>credit_limit deve ser maior ou igual a zero.</td><td>1</td><td>0.90</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+
+  <div class="section">
+    <h2>Evidências (prévia)</h2>
+    
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>row_number</th><th>message</th><th>rule_name</th><th>severity</th><th>column_name</th><th>invalid_value</th><th>source_file</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>9</td><td>customer_id ausente.</td><td>required_customer_id</td><td>high</td><td>customer_id</td><td>nan</td><td>customers.csv</td></tr><tr><td>5</td><td>email ausente.</td><td>required_email</td><td>high</td><td>email</td><td>nan</td><td>customers.csv</td></tr><tr><td>4</td><td>email inválido: joao.sem-arroba</td><td>email_format</td><td>high</td><td>email</td><td>joao.sem-arroba</td><td>customers.csv</td></tr><tr><td>2</td><td>customer_id duplicado: A1002</td><td>unique_customer_id</td><td>high</td><td>customer_id</td><td>A1002</td><td>customers.csv</td></tr><tr><td>3</td><td>customer_id duplicado: A1002</td><td>unique_customer_id</td><td>high</td><td>customer_id</td><td>A1002</td><td>customers.csv</td></tr><tr><td>6</td><td>country fora do domínio: XX</td><td>allowed_country</td><td>medium</td><td>country</td><td>XX</td><td>customers.csv</td></tr><tr><td>7</td><td>data futura identificada: 2099-01-01</td><td>signup_date_not_future</td><td>medium</td><td>signup_date</td><td>2099-01-01</td><td>customers.csv</td></tr><tr><td>8</td><td>credit_limit negativo: -20</td><td>credit_limit_non_negative</td><td>medium</td><td>credit_limit</td><td>-20</td><td>customers.csv</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</body>
+</html>

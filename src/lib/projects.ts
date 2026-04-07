@@ -57,30 +57,31 @@ export const projects: Project[] = [
     slug: "python-etl-automation",
     title: "ETL & Data Quality em Python",
     subtitle:
-      "Pipeline de dados com validações, rastreabilidade e geração de relatório em Excel (Data Quality).",
+      "Projeto em Python que lê arquivos CSV, identifica problemas de qualidade nos dados e gera relatórios claros em Excel e HTML.",
     tags: ["Dados", "Automação"],
-    stack: ["Python", "Pandas", "OpenPyXL", "Pytest", "CLI"],
+    stack: ["Python", "Pandas", "openpyxl", "XlsxWriter", "Pytest", "CLI", "GitHub Actions"],
     highlights: [
-  "Extract → Transform → Validate → Load com logs por etapa",
-  "9 regras de Data Quality: obrigatórios, tipos, duplicados, datas, domínio",
-  "DQIssue como modelo de dados para evidências rastreáveis",
-  "12 testes com Pytest cobrindo todas as regras e cenários de pipeline",
+  "Lê arquivos CSV e valida automaticamente a qualidade dos dados",
+  "Identifica problemas como campos vazios, duplicidades, datas inválidas e valores inconsistentes",
+  "Gera relatórios em Excel e HTML para facilitar revisão e auditoria",
+  "Conta com 12 testes automatizados para garantir a estabilidade da pipeline",
 ],
     repoUrl: "https://github.com/Dev02553/etl-data-quality-em-python",
     previewUrl: "/etl-preview.png",
+    demoUrl: "/reports/etl-data-quality/report.html",
     status: "Completo",
     year: "2024",
 
     metrics: [
-      { label: "Foco", value: "Qualidade de dados", hint: "regras + evidências" },
-      { label: "Saída", value: "Excel (XLSX)", hint: "aba de Data Quality" },
-      { label: "Testes", value: "Pytest", hint: "validações automatizadas" },
-      { label: "Uso", value: "CLI", hint: "execução simples por comando" },
+      { label: "Validações", value: "9 regras", hint: "campos obrigatórios, formato, duplicidade, datas e domínio" },
+      { label: "Testes", value: "12 testes", hint: "cobrindo regras e pipeline" },
+      { label: "Saída", value: "XLSX + HTML", hint: "relatórios prontos para análise" },
+      { label: "Execução", value: "CLI", hint: "rodando por comando simples" },
     ],
 
     run: {
       headless: "python -m pytest -q",
-      ui: "python main.py --input ./data --output ./output/report.xlsx",
+      ui: ".\run.ps1",
 },
 
     caseStudy: [
@@ -112,47 +113,47 @@ export const projects: Project[] = [
         id: "approach",
         title: { pt: "Abordagem", en: "Approach" },
         bullets: {
-          pt: [
-            "Pipeline por etapas com logs e checkpoints.",
-            "Validações separadas por regra (obrigatórios, tipos, duplicados, datas).",
-            "Saída em Excel com resumo e detalhes por regra.",
-          ],
-          en: [
-            "Step-based pipeline with logs and checkpoints.",
-            "Validations split by rule (required, types, duplicates, dates).",
-            "Excel output with a summary and rule-by-rule details.",
-          ],
-        },
-      },
+        pt: [
+      "Pipeline organizada por etapas, com logs e checkpoints para facilitar acompanhamento.",
+      "Validações separadas por regra, cobrindo obrigatoriedade, formato, duplicidade, datas e domínio.",
+      "Geração de relatórios em XLSX e HTML com visão executiva e detalhamento por regra.",
+      ],
+        en: [
+      "Step-based pipeline with logs and checkpoints for easier monitoring.",
+      "Validations split by rule, covering required fields, format, duplicates, dates and domain.",
+      "XLSX and HTML reports with executive summary and rule-by-rule detail.",
+       ],
+     },
+    },
       {
         id: "results",
         title: { pt: "Resultados", en: "Results" },
         bullets: {
-          pt: [
-            "Menos retrabalho: erros são detectados antes do consumo em relatórios.",
-            "Rastreabilidade: é possível explicar o “porquê” de cada inconsistência.",
-            "Base pronta para evoluir (CI, novas fontes, novas métricas).",
-          ],
-          en: [
-            "Less rework: issues are detected before reporting/consumption.",
-            "Traceability: you can explain the reason behind each inconsistency.",
-            "Ready-to-evolve base (CI, new sources, new metrics).",
+        pt: [
+      "Menos retrabalho: os problemas são detectados antes do consumo em relatórios e análises.",
+      "Mais rastreabilidade: cada inconsistência pode ser explicada com clareza.",
+      "Saída pronta para revisão em XLSX e HTML, facilitando auditoria da base.",
+      ],
+        en: [
+      "Less rework: issues are detected before reporting and downstream analysis.",
+      "More traceability: each inconsistency can be clearly explained.",
+      "Output ready for review in XLSX and HTML, making data auditing easier.",
           ],
         },
       },
       {
-        id: "next",
-        title: { pt: "Próximos passos", en: "Next steps" },
-        bullets: {
-          pt: [
-            "Adicionar validações por domínio (regras de negócio).",
-            "Gerar relatório HTML além do XLSX.",
-            "Rodar automaticamente via GitHub Actions.",
-          ],
-          en: [
-            "Add domain/business validations.",
-            "Generate HTML report in addition to XLSX.",
-            "Run automatically via GitHub Actions.",
+      id: "next",
+      title: { pt: "Próximos passos", en: "Next steps" },
+      bullets: {
+        pt: [
+      "Adicionar validações por domínio de negócio.",
+      "Expandir a entrada para formatos como JSON e Parquet.",
+      "Publicar o relatório HTML como demonstração estática.",
+    ],
+        en: [
+      "Add business-domain validations.",
+      "Expand input support to formats such as JSON and Parquet.",
+      "Publish the HTML report as a static demo.",
           ],
         },
       },
