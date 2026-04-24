@@ -228,7 +228,7 @@ export default function AboutPage() {
           <div>
             <h2 className="text-lg font-semibold">Contato</h2>
             <p className="text-sm text-muted-foreground">
-              Aberto para estágio/trainee/júnior, freela e colaborações — QA, automação, dados/ETL e
+              Aberto para trainee/Júnior - QA, freela e colaborações — , automação, dados/ETL e
               desenvolvimento.
             </p>
           </div>
