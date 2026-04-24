@@ -11,9 +11,9 @@ const skills = [
 ];
 
 const nowLearning = [
-  "Boas práticas de QA (estratégia, pirâmide de testes, critérios de aceite)",
-  "Relatórios de bugs e escrita de casos de teste mais completos",
-  "Comunicação em inglês para contexto técnico",
+  "Boas práticas de QA (estratégia de testes, pirâmide e critérios de aceite)",
+  "Escrita de casos de teste e relatórios de bugs mais claros e completos",
+  "Comunicação em inglês para contexto técnico e profissional",
 ];
 
 const experience = [
@@ -79,8 +79,8 @@ export default function AboutPage() {
       {/* HERO (substitui o header antigo + toggle) */}
       <PageHero
         title="Sobre"
-        badge="Objetivo: Estágio/Trainee · QA / Automação / Dados / Dev"
-        subtitle="Sou estudante de ADS com foco em Qualidade de Software (QA), automação e organização de processos. Gosto de entregar projetos completos: código, testes e documentação, com clareza e consistência."
+        badge="Objetivo: Trainee / Júnior · QA / Automação / Dados"
+        subtitle="Formado em Análise e Desenvolvimento de Sistemas, com foco em Qualidade de Software (QA), automação e organização de processos. Gosto de construir projetos completos, com código, testes e documentação bem estruturados."
         imageSrc="/contact-hero.jpg"
         rightSlot={
           <div className="rounded-xl border bg-background/70 backdrop-blur p-4">
@@ -114,15 +114,17 @@ export default function AboutPage() {
       >
         <div className="space-y-3">
           <p className="text-muted-foreground max-w-3xl leading-relaxed">
-            Minha base profissional vem de ambientes com ritmo e responsabilidade: atuei como único
-            colaborador de um petshop (atendimento, expedição e organização) e, mais recentemente,
-            como Assistente de E-commerce, operando marketplaces e ERPs (Shein, Shopee, Mercado
-            Livre, Amazon; Tiny, Bling), além de catálogo, atendimento online e expedição.
+            Minha base profissional vem de ambientes com ritmo, responsabilidade e atenção
+            a detalhes. Atuei em operação, atendimento, expedição e organização de
+            processos, primeiro como único colaborador de um petshop e depois em operação
+            de e-commerce multi-canal, com marketplaces, ERPs, catálogo e atendimento.
           </p>
 
           <p className="text-muted-foreground max-w-3xl leading-relaxed">
-            Essa experiência fortaleceu consistência, controle e execução ponta a ponta — e reforçou
-            minha mentalidade de QA: padronizar, reduzir erro e automatizar o repetitivo.
+            Essa vivência reforçou uma forma de trabalhar muito próxima de QA:
+            padronização, consistência, redução de erros e melhoria contínua. Hoje,
+            direciono essa base para projetos de testes, automação e dados, buscando
+            crescer em uma posição de entrada com boa mentoria e espaço para evolução.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-1">

@@ -80,12 +80,14 @@ export default function HomePage() {
               <h1 style={{ fontFamily: "var(--font-display)" }}>
                 David Rodrigues
               </h1>
-              <p style={{ color: "var(--noc-text-mid)", maxWidth: "480px" }}>
-                Projetos em <strong style={{ color: "var(--noc-purple-lite)" }}>QA</strong>,{" "}
-                <strong style={{ color: "var(--noc-purple-lite)" }}>automação</strong> e{" "}
-                <strong style={{ color: "var(--noc-cyan-lite)" }}>dados</strong>, com base sólida
-                em desenvolvimento. Contexto, execução e estrutura organizada em cada entrega.
-              </p>
+              <p style={{ color: "var(--noc-text-mid)", maxWidth: "520px" }}>
+              Portfólio com projetos em{" "}
+              <strong style={{ color: "var(--noc-purple-lite)" }}>QA</strong>,{" "}
+              <strong style={{ color: "var(--noc-purple-lite)" }}>automação</strong> e{" "}
+              <strong style={{ color: "var(--noc-cyan-lite)" }}>dados</strong>, com base em
+              desenvolvimento. Busco oportunidades para crescer em ambientes com processo,
+              aprendizado contínuo e entregas bem estruturadas.
+            </p>
             </div>
 
             {/* CTAs */}

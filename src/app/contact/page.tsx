@@ -36,8 +36,9 @@ export default function ContactPage() {
               </h1>
               <p className="text-muted-foreground max-w-prose leading-relaxed">
                 Se você quiser conversar sobre <b>QA</b>, <b>automação</b>,{" "}
-                <b>dados/ETL</b>, <b>backend</b> ou <b>frontend</b>, me chama.
-                Também topo colaborações e projetos.
+                <b>dados/ETL</b> ou oportunidades de entrada em tecnologia, pode me chamar.
+                Estou aberto a vagas <b>trainee</b>, <b>júnior</b>, colaborações e projetos
+                em que eu possa continuar evoluindo com consistência.
               </p>
             </div>
 
@@ -85,7 +86,7 @@ export default function ContactPage() {
                   Disponível para
                 </div>
                 <div className="text-sm font-medium">
-                  Estágio • Trainee • Jr • Freela
+                  Trainee • Júnior • Freela • Colaborações
                 </div>
               </div>
             </div>
@@ -94,10 +95,9 @@ export default function ContactPage() {
             <div className="rounded-xl border p-4">
               <div className="text-xs text-muted-foreground mb-1">EN</div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                If you&apos;d like to talk about <b>QA</b>, <b>automation</b>,{" "}
-                <b>data/ETL</b>, <b>backend</b> or <b>frontend</b>, feel free to
-                reach out. I&apos;m open to internships, junior roles, freelance
-                and collaborations.
+                If you'd like to talk about <b>QA</b>, <b>automation</b>, <b>data/ETL</b> or
+                entry-level opportunities in tech, feel free to reach out. I'm open to
+                trainee and junior roles, freelance work and collaborations.
               </p>
             </div>
           </div>
@@ -134,19 +134,19 @@ export default function ContactPage() {
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            {
-              title: "QA / Automação",
-              desc: "Selenium/JUnit, evidências, organização de suíte e redução de flakiness.",
-            },
-            {
-              title: "Dados / ETL",
-              desc: "Pipelines, validação, consistência e relatórios auditáveis (Excel/SQL).",
-            },
-            {
-              title: "Dev (apoio)",
-              desc: "APIs, dashboards, organização de código e boas práticas.",
-            },
-          ].map((c) => (
+              {
+                title: "QA / Automação",
+                desc: "Testes com Selenium/JUnit, evidências, organização de suíte e apoio na redução de falhas repetitivas.",
+              },
+              {
+                title: "Dados / ETL",
+                desc: "Validação de dados, consistência de informação, automações em Python e relatórios em Excel/SQL.",
+              },
+              {
+                title: "Desenvolvimento (apoio)",
+                desc: "Apoio em APIs, dashboards e organização de código com foco em clareza e boas práticas.",
+              },
+            ].map((c) => (
             <div key={c.title} className="rounded-xl border p-5">
               <div className="font-medium">{c.title}</div>
               <p className="text-sm text-muted-foreground mt-1">{c.desc}</p>
