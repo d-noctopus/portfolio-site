@@ -21,6 +21,7 @@ const stack = [
 export default function HomePage() {
   const featured = projects
     .slice()
+    .filter((p) => p.status !== "Em construção")
     .sort((a, b) => {
       const byYear = Number(b.year) - Number(a.year);
       if (byYear !== 0) return byYear;
